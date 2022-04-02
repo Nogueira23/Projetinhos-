@@ -2,7 +2,7 @@
 
 <div>
     <p>
-        Este projeto ainda não foi compilado para ".exe", então para executa-lo 		será necessário ter o <a href='https://www.python.org/downloads/' 				target="_blank">python </a> instalado na máquina.
+        Este projeto ainda não foi compilado para ".exe", então para executa-lo 		será necessário ter o <a href='https://www.python.org/downloads/' 				target='_blank'>python </a> instalado na máquina.
     </p>
 
 </div>
@@ -15,4 +15,17 @@ Programa criado para contar a quantidade de faltas de uma pessoa em algo, podend
 
 # Resultado:
 
-o programa gera um relatório com o número total (informado pelo usuário no momento da interação), com o número total de faltas e com as faltas restantes que a dada pessoa ainda possui (em relação a uma porcentagem informada pelo usuário).
+<div>
+    <p>
+        Relatório com:
+    </p>
+    <ul>
+        <li>Número total de aulas (informadas pelo usuário na interação);</li>
+        <li>Porcentagem de faltas máxima (informada pelo usuário na interação);			</li>
+        <li>Número total de faltas;</li>
+        <li>Faltas restantes.</li>
+    </ul>
+</div>
+
+
+
