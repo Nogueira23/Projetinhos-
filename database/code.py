@@ -76,8 +76,8 @@ class Application():
         print(self.__persons)
 
     def execute(self):
+        self.help_commands()
         while True:
-            self.help_commands()
             print('')
             command = input("Command: ")
             if command == "0":
