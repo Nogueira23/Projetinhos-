@@ -20,7 +20,8 @@ Programa criado para registrar informações de pessoas.
         <li>Número total de homens;</li>
         <li>Número total de mulheres;</li>
         <li>Idade da pessoa mais velha;</li>
-        <li>Idade da pessoa mais nova.</li>
+        <li>Idade da pessoa mais nova;</li>
+        <li>Banco de dados inteiro.</li>
     </ul>
 </div>
 
