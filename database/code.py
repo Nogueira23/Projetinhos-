@@ -1,68 +1,101 @@
+from operator import itemgetter
+
+
 class Persons:
     def __init__(self):
         self.persons = {}
+    
+    def __str__(self):
+        string = ''
+        for person in self.persons.keys():
+            string += f'{person}: (sexo: {self.persons[person][0]}, idade: {self.persons[person][1]})'
+            string += "\n"
+        return string 
+class Application():
+    def __init__(self):
+        self.__persons = Persons()
+    
+    def help_commands(self):
+        print("Digite 1 para adicionar uma pessoa")
+        print("Digite 2 para saber a idade do mais novo")
+        print("DIgite 3 para saber a idade do mais velho")
+        print("Digite 4 para ter acesso ao banco de dados")
+        print("Digite 5 para saber a quantidade de mulheres")
+        print("Digite 6 para saber a quantidade de homens")
+        print("Digite 0 para fechar o aplicativo")
+    
+    def help_sex(self):
+        print("Digite M (para masculino) ou F (para feminino)")
 
-    def new_person(self):
-        name = input("Digite o nome: ")
+    def add_person(self):
+        name = input("Name: ")
         while True:
-            sex = input("Digite o sexo: ")
+            sex = input("Sexo: ")
             if sex == "M" or sex == "F":
                 break
             else:
-                print("Responda com M (para masculino) ou F (para feminino)!")
-        age = int(input("Digite a idade: "))
-        self.persons[name] = []
-        self.persons[name].append(sex)
-        self.persons[name].append(age)
+                self.help_sex()
+        age = int(input("Idade: "))
+        self.__persons.persons[f'{name}'] = (sex, age)
     
     def newest_person(self):
-        menor = 400
-        for person in self.persons.values():
-            if person[1] < menor:
-                menor = person[1]
-            else:
-                continue
-        return f'A pessoa mais nova tem {menor} anos.'
+        persons = sorted(self.__persons.persons.items(), key=itemgetter(1), reverse=True)
+        newest_person = persons[0]
+        if newest_person[1][0] == "M":
+            print(f'{newest_person[0]} é o mais novo, com {newest_person[1][1]} anos de idade')
+        else:
+            print(f'{newest_person[0]} é a mais nova, com {newest_person[1][1]} anos de idade')
     
     def oldest_person(self):
-        maior = 0
-        for person in self.persons.values():
-            if person[1] > maior:
-                maior = person[1]
+        persons = sorted(self.__persons.persons.items(), key=itemgetter(1))
+        oldest_person = persons[0]
+        if oldest_person[1][0] == "M":
+            print(f'{oldest_person[0]} é o mais velho, com {oldest_person[1][1]} anos de idade')
+        else:
+            print(f'{oldest_person[0]} é a mais velha, com {oldest_person[1][1]} anos de idade')
+        
+    def women(self):
+        aux = 0
+        for person in self.__persons.persons.values():
+            if person[0] == "F":
+                aux += 1
             else:
                 continue
-        return f'A pessoa mais nova tem {maior} anos.'
+        print(f'Há {aux} mulheres registradas')
     
-        
-    def man_persons(self):
+    def men(self):
         aux = 0
-        for person in self.persons.values():
+        for person in self.__persons.persons.values():
             if person[0] == "M":
                 aux += 1
             else:
                 continue
-        return f'{aux} homens foram registrados'    
-            
-    def women_persons(self):
-        aux1 = 0
-        for person in self.persons.values():
-            if person[0] == "F":
-                aux1 += 1
+        print(f'Há {aux} homens registrados')
+    
+    def printest(self):
+        print(self.__persons)
+
+    def execute(self):
+        while True:
+            print('')
+            command = input("Command: ")
+            if command == "0":
+                break
+            elif command == "1":
+                self.add_person()
+            elif command == "2":
+                self.newest_person()
+            elif command == "3":
+                self.oldest_person()
+            elif command == "4":
+                self.printest()
+            elif command == "5":
+                self.women()
+            elif command == "6":
+                self.men()
             else:
-                continue
-        return f'{aux1} mulheres foram registradas'
-        
+                self.help_commands()
 
 
-persons = Persons()
-persons.new_person()
-pergunta = input("Ainda há pessoas para registrar? ")
-while pergunta != "n":
-    persons.new_person()
-    pergunta = input("Ainda há pessoas para registrar? ")
-
-print(persons.newest_person())
-print(persons.oldest_person())
-print(persons.man_persons())
-print(persons.women_persons())
-
+application = Application()
+application.execute()
